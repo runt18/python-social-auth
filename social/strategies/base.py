@@ -133,9 +133,9 @@ class BaseStrategy(object):
                 'uid': social.uid
             } or None
         }
-        clean_kwargs.update(kwargs)
+        kwargs.update(clean_kwargs)
         # Clean any MergeDict data type from the values
-        clean_kwargs.update((name, dict(value))
+        kwargs.update((name, dict(value))
                                 for name, value in clean_kwargs.items()
                                     if isinstance(value, dict))
         return {
@@ -143,7 +143,7 @@ class BaseStrategy(object):
             'backend': backend.name,
             'args': tuple(map(self.to_session_value, args)),
             'kwargs': dict((key, self.to_session_value(val))
-                                for key, val in clean_kwargs.items()
+                                for key, val in kwargs.items()
                                    if isinstance(val, self.SERIALIZABLE_TYPES))
         }
 
