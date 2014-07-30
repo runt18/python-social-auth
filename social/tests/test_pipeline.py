@@ -212,8 +212,7 @@ class UserPersistsInPartialPipeline(BaseActionTest):
         data = self.strategy.session_pop('partial_pipeline')
 
         idx, backend, xargs, xkwargs = self.strategy.partial_from_session(data)
-
-        self.backend.continue_pipeline(pipeline_index=idx,
+        self.strategy.continue_pipeline(pipeline_index=idx,
                                               *xargs, **xkwargs)
 
 
@@ -239,5 +238,5 @@ class UserPersistsInPartialPipeline(BaseActionTest):
 
         idx, backend, xargs, xkwargs = self.strategy.partial_from_session(data)
 
-        self.backend.continue_pipeline(pipeline_index=idx,
+        self.strategy.continue_pipeline(pipeline_index=idx,
                                               *xargs, **xkwargs)
